@@ -28,7 +28,9 @@ var render = function(){
   context.fillStyle = "#000";
   // Paints the given rectangle onto the bitmap, using the current fill style.
   context.fillRect(0, 0, width, height);
-}
+  player.render();
+  ball.render();
+};
 
 function Bat(x, y, width, height){
   this.x = x;
@@ -37,7 +39,7 @@ function Bat(x, y, width, height){
   this.height = height;
   this.x_speed = 0;
   this.y_speed = 0;
-}
+};
 
 Bat.prototype.render = function(){
   context.fillStyle = "#fff";
@@ -46,7 +48,7 @@ Bat.prototype.render = function(){
 
 function Player(){
   this.bat = new Bat(175, 300, 50, 10);
-}
+};
 function Computer(){
   this.bat = new Bat(175, 10, 50, 10);
 };
@@ -66,7 +68,7 @@ function Ball(x, y) {
   this.x_speed = 0;
   this.y_speed = 3;
   this.radius = 5;
-}
+};
 
 Ball.prototype.render = function() {
   context.beginPath();
@@ -78,4 +80,4 @@ Ball.prototype.render = function() {
 
 var player = new Player();
 var computer = new Computer();
-var ball = new Ball(200, 300);
+var ball = new Ball(300, 200);
