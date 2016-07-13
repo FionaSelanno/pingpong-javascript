@@ -22,7 +22,9 @@ var step = function(){
 };
 
 var update = function() {
+  ball.update();
 };
+
 
 var render = function(){
   context.fillStyle = "#000";
@@ -47,11 +49,12 @@ Bat.prototype.render = function(){
   context.fillRect(this.x, this.y, this.width, this.height);
 };
 
+
 function Player(){
-  this.bat = new Bat(175, 300, 50, 10);
+  this.bat = new Bat(275, 380, 50, 10);
 };
 function Computer(){
-  this.bat = new Bat(175, 10, 50, 10);
+  this.bat = new Bat(275, 10, 50, 10);
 };
 
 Player.prototype.render = function() {
@@ -78,6 +81,10 @@ Ball.prototype.render = function() {
   context.fill();
 };
 
+Ball.prototype.update = function(){
+  this.x += this.x_speed;
+  this.y += this.y_speed;
+};
 
 var player = new Player();
 var computer = new Computer();
