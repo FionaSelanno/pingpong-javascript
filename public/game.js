@@ -43,3 +43,18 @@ Bat.prototype.render = function(){
   context.fillStyle = "#fff";
   context.fillRect(this.x, this.y, this.width, this.height);
 };
+
+function Player(){
+  this.bat = new Bat(175, 300, 50, 10);
+}
+function Computer(){
+  this.bat = new Bat(175, 10, 50, 10);
+};
+
+Player.prototype.render = function() {
+  this.bat.render();
+};
+
+Computer.prototype.render = function() {
+  this.bat.render();
+};
