@@ -74,3 +74,8 @@ Ball.prototype.render = function() {
   context.fillStyle = "#fff";
   context.fill();
 };
+
+
+var player = new Player();
+var computer = new Computer();
+var ball = new Ball(200, 300);
