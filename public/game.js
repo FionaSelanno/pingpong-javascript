@@ -69,8 +69,8 @@ Computer.prototype.render = function() {
 function Ball(x, y) {
   this.x = x;
   this.y = y;
-  this.x_speed = 0;
-  this.y_speed = 3;
+  this.x_speed = 3;
+  this.y_speed = 0;
   this.radius = 5;
 };
 
