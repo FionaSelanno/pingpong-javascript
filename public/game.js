@@ -51,10 +51,10 @@ Bat.prototype.render = function(){
 
 
 function Player(){
-  this.bat = new Bat(275, 380, 50, 10);
+  this.bat = new Bat(275, 380, 10, 50);
 };
 function Computer(){
-  this.bat = new Bat(275, 10, 50, 10);
+  this.bat = new Bat(275, 10, 10, 50);
 };
 
 Player.prototype.render = function() {
