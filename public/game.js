@@ -89,15 +89,15 @@ Ball.prototype.update = function(bat1, bat2){
   var bottom_x = this.x + 5;
   var bottom_y = this.y + 5;
 
-  if(this.x - 5 < 0) { // hitting the left wall
-    this.x = 5;
+  if(this.x - 5 < 15) { // hitting the left wall
+    this.x = 20;
     this.x_speed = -this.x_speed;
   } else if(this.x + 5 > 582) { // hitting the right wall
     this.x = 577;
     this.x_speed = -this.x_speed;
   }
 
-  // if(this.y < 0 || this.y > 600) { // a point was scored
+  // if(this.x < 0 || this.x > 600) { // a point was scored
   //   this.x_speed = 0;
   //   this.y_speed = 3;
   //   this.x = 200;
@@ -111,7 +111,8 @@ Ball.prototype.update = function(bat1, bat2){
   //     this.x_speed += (bat1.x_speed / 2);
   //     this.y += this.y_speed;
   //   }
-  // } else {
+  // }
+  //  else {
   //   if(top_y < (bat2.y + bat2.height) && bottom_y > bat2.y && top_x < (bat2.x + bat2.width) && bottom_x > bat2.x) {
   //     // hit the computer's paddle
   //     this.y_speed = 3;
