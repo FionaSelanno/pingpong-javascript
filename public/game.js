@@ -14,3 +14,9 @@ window.onload = function(){
   document.body.appendChild(canvas);
   animate(step);
 };
+
+var step = function(){
+  update();
+  render();
+  animate(step);
+};
