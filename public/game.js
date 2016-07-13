@@ -20,3 +20,26 @@ var step = function(){
   render();
   animate(step);
 };
+
+var update = function() {
+};
+
+var render = function(){
+  context.fillStyle = "#000";
+  // Paints the given rectangle onto the bitmap, using the current fill style.
+  context.fillRect(0, 0, width, height);
+}
+
+function Bat(x, y, width, height){
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.x_speed = 0;
+  this.y_speed = 0;
+}
+
+Bat.prototype.render = function(){
+  context.fillStyle = "#fff";
+  context.fillRect(this.x, this.y, this.width, this.height);
+};
