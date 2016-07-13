@@ -9,3 +9,8 @@ var height = 400;
 canvas.width = width;
 canvas.height = height;
 var context = canvas.getContext('2d');
+
+window.onload = function(){
+  document.body.appendChild(canvas);
+  animate(step);
+};
