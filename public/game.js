@@ -30,6 +30,7 @@ var render = function(){
   context.fillRect(0, 0, width, height);
   player.render();
   ball.render();
+  computer.render();
 };
 
 function Bat(x, y, width, height){
