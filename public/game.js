@@ -34,7 +34,7 @@ var render = function(){
   ball.render();
   computer.render();
 };
-
+ //--------Bat----------------------------------------------------------------
 function Bat(x, y, width, height){
   this.x = x;
   this.y = y;
@@ -49,7 +49,6 @@ Bat.prototype.render = function(){
   context.fillRect(this.x, this.y, this.width, this.height);
 };
 
-
 function Player(){
   this.bat = new Bat(580, 175, 10, 50);
 };
@@ -57,15 +56,16 @@ function Computer(){
   this.bat = new Bat(10, 175, 10, 50);
 };
 
-Player.prototype.render = function() {
+Player.prototype.render = function() { //player
   this.bat.render();
 };
 
-Computer.prototype.render = function() {
+Computer.prototype.render = function() { //player Computer
   this.bat.render();
 };
 
 
+//-------------Ball-------------------------------------------------
 function Ball(x, y) {
   this.x = x;
   this.y = y;
@@ -89,10 +89,10 @@ Ball.prototype.update = function(bat1, bat2){
   var bottom_x = this.x + 5;
   var bottom_y = this.y + 5;
 
-  if(this.x - 5 < 15) { // hitting the left wall
+  if(this.x - 5 < 15) { // hitting the left bat
     this.x = 20;
     this.x_speed = -this.x_speed;
-  } else if(this.x + 5 > 582) { // hitting the right wall
+  } else if(this.x + 5 > 582) { // hitting the right bat
     this.x = 577;
     this.x_speed = -this.x_speed;
   }
@@ -106,7 +106,7 @@ Ball.prototype.update = function(bat1, bat2){
   //
   // if(top_y > 300) {
   //   if(top_y < (bat1.y + bat1.height) && bottom_y > bat1.y && top_x < (bat1.x + bat1.width) && bottom_x > bat1.x) {
-  //     // hit the player's paddle
+  //     // hit the player's bat
   //     this.y_speed = -3;
   //     this.x_speed += (bat1.x_speed / 2);
   //     this.y += this.y_speed;
@@ -122,6 +122,84 @@ Ball.prototype.update = function(bat1, bat2){
   // }
 };
 
+//-------Objects---------------------------------------------------------
 var player = new Player();
 var computer = new Computer();
 var ball = new Ball(300, 200);
+var keysDown = {};
+
+//-------Controllers---------------------------------------------------
+
+window.addEventListener("keydown", function(event) { //whenever pressing the key and keep pressing the key the controller is activated
+  keysDown[event.keyCode] = true;
+});
+
+window.addEventListener("keyup", function(event) { //whenever you stop pressing the key, the controller stops
+  delete keysDown[event.keyCode];
+});
+
+var update = function() {
+  player.update();
+  ball.update(player.bat, computer.bat);
+};
+
+//------Controller player---------------------------------------------
+
+// Player.prototype.update = function() {
+//   for(var key in keysDown) {
+//     var value = Number(key);
+//     if(value == 38) { // up arrow
+//       this.bat.move(-4, 0);
+//     } else if (value == 40) { // down arrow
+//       this.bat.move(4, 0);
+//     } else {
+//       this.bat.move(0, 0);
+//     }
+//   }
+// };
+//
+// Bat.prototype.move = function(x, y) {
+//   this.x += x;
+//   this.y += y;
+//   this.x_speed = x;
+//   this.y_speed = y;
+//   if(this.y < 0) { // all the way down
+//     this.y = 0;
+//     this.y_speed = 0;
+//   } else if (this.y + this.width > 400) { // all the way up
+//     this.y = 400 - this.width;
+//     this.y_speed = 0;
+//   }
+// }
+
+var update = function() {
+  player.update();
+  ball.update(player.bat, computer.bat);
+};
+
+Player.prototype.update = function() {
+  for(var key in keysDown) {
+    var value = Number(key);
+    if(value == 38) { // up arrow
+      this.bat.move(0, -4);
+    } else if (value == 40) { // down arrow
+      this.bat.move(0, 4);
+    } else {
+      this.bat.move(0, 0);
+    }
+  }
+};
+
+Bat.prototype.move = function(x, y) {
+  this.x += x;
+  this.y += y;
+  this.x_speed = x;
+  this.y_speed = y;
+  if(this.y < 0) { // all the way to the left
+    this.y = 0;
+    this.y_speed = 0;
+  } else if (this.y + this.height > 400) { // all the way to the right
+    this.y = 400 - this.height;
+    this.y_speed = 0;
+  }
+}
