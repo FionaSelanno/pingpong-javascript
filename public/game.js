@@ -122,6 +122,52 @@ Ball.prototype.update = function(bat1, bat2){
   // }
 };
 
+//-------Objects---------------------------------------------------------
 var player = new Player();
 var computer = new Computer();
 var ball = new Ball(300, 200);
+var keys = {};
+
+//-------Controllers---------------------------------------------------
+
+window.addEventListener("keyright", function(event) {
+  keys[event.keyCode] = true;
+});
+
+window.addEventListener("keyleft", function(event) {
+  delete keys[event.keyCode];
+});
+
+var update = function() {
+  player.update();
+  ball.update(player.bat, computer.bat);
+};
+
+//------Controller player---------------------------------------------
+
+Player.prototype.update = function() {
+  for(var key in keys) {
+    var value = Number(key);
+    if(value == 37) { // left arrow
+      this.bat.move(-4, 0);
+    } else if (value == 39) { // right arrow
+      this.bat.move(4, 0);
+    } else {
+      this.bat.move(0, 0);
+    }
+  }
+};
+
+// Bat.prototype.move = function(x, y) {
+//   this.x += x;
+//   this.y += y;
+//   this.x_speed = x;
+//   this.y_speed = y;
+//   if(this.x < 0) { // all the way to the left
+//     this.x = 0;
+//     this.x_speed = 0;
+//   } else if (this.x + this.width > 600) { // all the way to the right
+//     this.x = 600 - this.width;
+//     this.x_speed = 0;
+//   }
+// }
