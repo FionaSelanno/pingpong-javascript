@@ -145,29 +145,61 @@ var update = function() {
 
 //------Controller player---------------------------------------------
 
+// Player.prototype.update = function() {
+//   for(var key in keysDown) {
+//     var value = Number(key);
+//     if(value == 38) { // up arrow
+//       this.bat.move(-4, 0);
+//     } else if (value == 40) { // down arrow
+//       this.bat.move(4, 0);
+//     } else {
+//       this.bat.move(0, 0);
+//     }
+//   }
+// };
+//
+// Bat.prototype.move = function(x, y) {
+//   this.x += x;
+//   this.y += y;
+//   this.x_speed = x;
+//   this.y_speed = y;
+//   if(this.y < 0) { // all the way down
+//     this.y = 0;
+//     this.y_speed = 0;
+//   } else if (this.y + this.width > 400) { // all the way up
+//     this.y = 400 - this.width;
+//     this.y_speed = 0;
+//   }
+// }
+
+var update = function() {
+  player.update();
+  ball.update(player.bat, computer.bat);
+};
+
 Player.prototype.update = function() {
-  for(var key in keys) {
+  for(var key in keysDown) {
     var value = Number(key);
-    if(value == 37) { // left arrow
-      this.bat.move(-4, 0);
-    } else if (value == 39) { // right arrow
-      this.bat.move(4, 0);
+    if(value == 38) { // up arrow
+      this.bat.move(0, -4);
+    } else if (value == 40) { // down arrow
+      this.bat.move(0, 4);
     } else {
       this.bat.move(0, 0);
     }
   }
 };
 
-// Bat.prototype.move = function(x, y) {
-//   this.x += x;
-//   this.y += y;
-//   this.x_speed = x;
-//   this.y_speed = y;
-//   if(this.x < 0) { // all the way to the left
-//     this.x = 0;
-//     this.x_speed = 0;
-//   } else if (this.x + this.width > 600) { // all the way to the right
-//     this.x = 600 - this.width;
-//     this.x_speed = 0;
-//   }
-// }
+Bat.prototype.move = function(x, y) {
+  this.x += x;
+  this.y += y;
+  this.x_speed = x;
+  this.y_speed = y;
+  if(this.y < 0) { // all the way to the left
+    this.y = 0;
+    this.y_speed = 0;
+  } else if (this.y + this.height > 400) { // all the way to the right
+    this.y = 400 - this.height;
+    this.y_speed = 0;
+  }
+}
