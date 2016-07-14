@@ -89,10 +89,10 @@ Ball.prototype.update = function(bat1, bat2){
   var bottom_x = this.x + 5;
   var bottom_y = this.y + 5;
 
-  if(this.x - 5 < 15) { // hitting the left wall
+  if(this.x - 5 < 15) { // hitting the left bat
     this.x = 20;
     this.x_speed = -this.x_speed;
-  } else if(this.x + 5 > 582) { // hitting the right wall
+  } else if(this.x + 5 > 582) { // hitting the right bat
     this.x = 577;
     this.x_speed = -this.x_speed;
   }
@@ -106,7 +106,7 @@ Ball.prototype.update = function(bat1, bat2){
   //
   // if(top_y > 300) {
   //   if(top_y < (bat1.y + bat1.height) && bottom_y > bat1.y && top_x < (bat1.x + bat1.width) && bottom_x > bat1.x) {
-  //     // hit the player's paddle
+  //     // hit the player's bat
   //     this.y_speed = -3;
   //     this.x_speed += (bat1.x_speed / 2);
   //     this.y += this.y_speed;
@@ -126,16 +126,16 @@ Ball.prototype.update = function(bat1, bat2){
 var player = new Player();
 var computer = new Computer();
 var ball = new Ball(300, 200);
-var keys = {};
+var keysDown = {};
 
 //-------Controllers---------------------------------------------------
 
-window.addEventListener("keyright", function(event) {
-  keys[event.keyCode] = true;
+window.addEventListener("keydown", function(event) { //whenever pressing the key and keep pressing the key the controller is activated
+  keysDown[event.keyCode] = true;
 });
 
-window.addEventListener("keyleft", function(event) {
-  delete keys[event.keyCode];
+window.addEventListener("keyup", function(event) { //whenever you stop pressing the key, the controller stops
+  delete keysDown[event.keyCode];
 });
 
 var update = function() {
