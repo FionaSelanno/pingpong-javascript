@@ -34,7 +34,7 @@ var render = function(){
   ball.render();
   computer.render();
 };
-
+ //--------Bat----------------------------------------------------------------
 function Bat(x, y, width, height){
   this.x = x;
   this.y = y;
@@ -49,7 +49,6 @@ Bat.prototype.render = function(){
   context.fillRect(this.x, this.y, this.width, this.height);
 };
 
-
 function Player(){
   this.bat = new Bat(580, 175, 10, 50);
 };
@@ -57,15 +56,16 @@ function Computer(){
   this.bat = new Bat(10, 175, 10, 50);
 };
 
-Player.prototype.render = function() {
+Player.prototype.render = function() { //player
   this.bat.render();
 };
 
-Computer.prototype.render = function() {
+Computer.prototype.render = function() { //player Computer
   this.bat.render();
 };
 
 
+//-------------Ball-------------------------------------------------
 function Ball(x, y) {
   this.x = x;
   this.y = y;
